@@ -8,4 +8,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 public class GetByIdLikeResponse {
+    private Long likesId;
+    private Long postId;
+    private Long userId;
 }

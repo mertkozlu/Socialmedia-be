@@ -8,4 +8,8 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 public class GetByIdPostResponse {
+    private long postId;
+    private Long userId;
+    private String title;
+    private String text;
 }
