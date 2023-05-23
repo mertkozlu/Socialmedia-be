@@ -22,10 +22,15 @@ public class CommentService {
         this.postService = postService;
         this.userService = userService;
     }
-    public List<Comment> getAllComments(Optional<Long> postId) {
-        if (postId.isPresent())
+    public List<Comment> getAllComments(Optional<Long> userId, Optional<Long> postId) {
+        if (userId.isPresent() && postId.isPresent()){
+             return commentRepository.findByUser_UserIdAndPost_PostId(userId.get(),postId.get());
+        } else if (userId.isPresent()) {
+            return commentRepository.findByUser_UserId(userId.get());
+        } else if (postId.isPresent()) {
             return commentRepository.findByPost_PostId(postId.get());
-        return commentRepository.findAll();
+        }else
+            return commentRepository.findAll();
     }
 
     public Comment createOnePost(CreateCommentRequest createCommentRequest) {
@@ -34,19 +39,19 @@ public class CommentService {
         if (user == null && post == null)
             return null;
         Comment toSave = new Comment();
-        toSave.setId(createCommentRequest.getId());
+        toSave.setCommentId(createCommentRequest.getCommentId());
         toSave.setText(createCommentRequest.getText());
         toSave.setUser(user);
         toSave.setPost(post);
         return commentRepository.save(toSave);
     }
 
-    public Comment getOneComment(Long id) {
-        return commentRepository.findById(id).orElse(null);
+    public Comment getOneComment(Long commentId) {
+        return commentRepository.findById(commentId).orElse(null);
     }
 
-    public Comment updateOneCommentById(Long id, UpdateCommentRequest updateCommentRequest) {
-        Optional<Comment> comment = commentRepository.findById(id);
+    public Comment updateOneCommentById(Long commentId, UpdateCommentRequest updateCommentRequest) {
+        Optional<Comment> comment = commentRepository.findById(commentId);
         if (comment.isPresent()) {
             Comment toUpdate = comment.get();
             toUpdate.setText(updateCommentRequest.getText());
@@ -56,8 +61,8 @@ public class CommentService {
             return null;
     }
 
-    public void deleteOneComment(Long id) {
-        this.commentRepository.deleteById(id);
+    public void deleteOneComment(Long commentId) {
+        this.commentRepository.deleteById(commentId);
     }
 
 }
