@@ -28,7 +28,7 @@ public class PostsController {
 
     @GetMapping("/{postId}")
     public Post getOnePost(@PathVariable Long postId) {
-        return postService.getOnePostById(postId);
+        return postService.getOnePost(postId);
     }
 
     @PutMapping("/{postId}")
