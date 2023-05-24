@@ -3,6 +3,7 @@ package com.socialmedia.SocialMedia.wepApi.controllers;
 import com.socialmedia.SocialMedia.business.concretes.PostService;
 import com.socialmedia.SocialMedia.dto.requests.CreatePostRequest;
 import com.socialmedia.SocialMedia.dto.requests.UpdatePostRequest;
+import com.socialmedia.SocialMedia.dto.responses.GetAllPostResponse;
 import com.socialmedia.SocialMedia.entitites.concretes.Post;
 import org.springframework.web.bind.annotation.*;
 import java.util.List;
@@ -18,7 +19,7 @@ public class PostsController {
     }
 
     @GetMapping
-    public List<Post> getAllPosts(@RequestParam Optional<Long> userId) {
+    public List<GetAllPostResponse> getAllPosts(@RequestParam Optional<Long> userId) {
         return postService.getAllPosts(userId);
     }
     @PostMapping

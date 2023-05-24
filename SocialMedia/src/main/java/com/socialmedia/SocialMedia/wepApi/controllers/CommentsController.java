@@ -3,6 +3,7 @@ package com.socialmedia.SocialMedia.wepApi.controllers;
 import com.socialmedia.SocialMedia.business.concretes.CommentService;
 import com.socialmedia.SocialMedia.dto.requests.CreateCommentRequest;
 import com.socialmedia.SocialMedia.dto.requests.UpdateCommentRequest;
+import com.socialmedia.SocialMedia.dto.responses.GetAllCommentResponse;
 import com.socialmedia.SocialMedia.entitites.concretes.Comment;
 import com.socialmedia.SocialMedia.entitites.concretes.Post;
 import org.springframework.web.bind.annotation.*;
@@ -20,8 +21,8 @@ public class CommentsController {
     }
 
     @GetMapping("/getAll")
-    public List<Comment> getAllComments(@RequestParam Optional<Long> userId,
-                                        @RequestParam Optional<Long> postId ) {
+    public List<GetAllCommentResponse> getAllComments(@RequestParam Optional<Long> userId,
+                                                      @RequestParam Optional<Long> postId ) {
         return commentService.getAllComments(userId, postId);
     }
 

@@ -3,6 +3,7 @@ package com.socialmedia.SocialMedia.business.concretes;
 import com.socialmedia.SocialMedia.dataAccess.abstracts.CommentRepository;
 import com.socialmedia.SocialMedia.dto.requests.CreateCommentRequest;
 import com.socialmedia.SocialMedia.dto.requests.UpdateCommentRequest;
+import com.socialmedia.SocialMedia.dto.responses.GetAllCommentResponse;
 import com.socialmedia.SocialMedia.entitites.concretes.Comment;
 import com.socialmedia.SocialMedia.entitites.concretes.Post;
 import com.socialmedia.SocialMedia.entitites.concretes.User;
@@ -10,6 +11,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Service
 public class CommentService {
@@ -22,15 +24,17 @@ public class CommentService {
         this.postService = postService;
         this.userService = userService;
     }
-    public List<Comment> getAllComments(Optional<Long> userId, Optional<Long> postId) {
+    public List<GetAllCommentResponse> getAllComments(Optional<Long> postId, Optional<Long> userId) {
+        List<Comment> list;
         if (userId.isPresent() && postId.isPresent()){
-             return commentRepository.findByUser_UserIdAndPost_PostId(userId.get(),postId.get());
+             list = commentRepository.findByUser_UserIdAndPost_PostId(userId.get(),postId.get());
         } else if (userId.isPresent()) {
-            return commentRepository.findByUser_UserId(userId.get());
+            list = commentRepository.findByUser_UserId(userId.get());
         } else if (postId.isPresent()) {
-            return commentRepository.findByPost_PostId(postId.get());
+            list = commentRepository.findByPost_PostId(postId.get());
         }else
-            return commentRepository.findAll();
+            list = commentRepository.findAll();
+        return list.stream().map(comment -> new GetAllCommentResponse(comment)).collect(Collectors.toList());
     }
 
     public Comment createOnePost(CreateCommentRequest createCommentRequest) {
