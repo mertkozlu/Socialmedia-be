@@ -6,6 +6,7 @@ import com.socialmedia.SocialMedia.dto.requests.UpdatePostRequest;
 import com.socialmedia.SocialMedia.dto.responses.GetAllPostResponse;
 import com.socialmedia.SocialMedia.entitites.concretes.Post;
 import org.springframework.web.bind.annotation.*;
+
 import java.util.List;
 import java.util.Optional;
 
@@ -22,6 +23,7 @@ public class PostsController {
     public List<GetAllPostResponse> getAllPosts(@RequestParam Optional<Long> userId) {
         return postService.getAllPosts(userId);
     }
+
     @PostMapping
     public Post createOnePost(@RequestBody CreatePostRequest createPostRequest) {
         return postService.createOnePost(createPostRequest);
@@ -41,7 +43,6 @@ public class PostsController {
     public void deleteOnePost(@PathVariable Long postId) {
         this.postService.deleteOnePostById(postId);
     }
-
 
 
 }

@@ -1,6 +1,5 @@
 package com.socialmedia.SocialMedia.entitites.concretes;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;

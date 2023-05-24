@@ -5,7 +5,6 @@ import com.socialmedia.SocialMedia.dto.requests.CreateCommentRequest;
 import com.socialmedia.SocialMedia.dto.requests.UpdateCommentRequest;
 import com.socialmedia.SocialMedia.dto.responses.GetAllCommentResponse;
 import com.socialmedia.SocialMedia.entitites.concretes.Comment;
-import com.socialmedia.SocialMedia.entitites.concretes.Post;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -22,7 +21,7 @@ public class CommentsController {
 
     @GetMapping("/getAll")
     public List<GetAllCommentResponse> getAllComments(@RequestParam Optional<Long> userId,
-                                                      @RequestParam Optional<Long> postId ) {
+                                                      @RequestParam Optional<Long> postId) {
         return commentService.getAllComments(userId, postId);
     }
 
@@ -44,6 +43,6 @@ public class CommentsController {
 
     @DeleteMapping("/delete/{commentId}")
     public void deleteOneComment(@PathVariable Long commentId) {
-        this.commentService.deleteOneComment(commentId);
+        this.commentService.deleteOneCommentById(commentId);
     }
 }

@@ -10,6 +10,7 @@ public class GetAllCommentResponse {
 
     public GetAllCommentResponse(Comment entity) {
         this.commentId = entity.getCommentId();
-        this.text = entity.getText();;
+        this.text = entity.getText();
+
     }
 }

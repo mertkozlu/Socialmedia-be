@@ -24,15 +24,16 @@ public class CommentService {
         this.postService = postService;
         this.userService = userService;
     }
+
     public List<GetAllCommentResponse> getAllComments(Optional<Long> postId, Optional<Long> userId) {
         List<Comment> list;
-        if (userId.isPresent() && postId.isPresent()){
-             list = commentRepository.findByUser_UserIdAndPost_PostId(userId.get(),postId.get());
+        if (userId.isPresent() && postId.isPresent()) {
+            list = commentRepository.findByUser_UserIdAndPost_PostId(userId.get(), postId.get());
         } else if (userId.isPresent()) {
             list = commentRepository.findByUser_UserId(userId.get());
         } else if (postId.isPresent()) {
             list = commentRepository.findByPost_PostId(postId.get());
-        }else
+        } else
             list = commentRepository.findAll();
         return list.stream().map(comment -> new GetAllCommentResponse(comment)).collect(Collectors.toList());
     }
@@ -62,10 +63,10 @@ public class CommentService {
             commentRepository.save(toUpdate);
             return toUpdate;
         }
-            return null;
+        return null;
     }
 
-    public void deleteOneComment(Long commentId) {
+    public void deleteOneCommentById(Long commentId) {
         this.commentRepository.deleteById(commentId);
     }
 

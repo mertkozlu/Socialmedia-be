@@ -35,7 +35,7 @@ public class UserService {
             foundUser.setUserName(newUser.getUserName());
             foundUser.setPassword(newUser.getPassword());
             return foundUser;
-        }else
+        } else
             return null;
     }
 
