@@ -22,7 +22,7 @@ public class LikesController {
     @GetMapping
     public List<GetAllLikeResponse> getAllLikes(@RequestParam Optional<Long> userId,
                                                 @RequestParam Optional<Long> postId) {
-        return likeService.getAllLikes(postId, userId);
+        return likeService.getAllLikesWithParam(postId, userId);
     }
 
     @PostMapping("/add/{likeId}")

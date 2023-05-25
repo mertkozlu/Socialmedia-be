@@ -3,6 +3,7 @@ package com.socialmedia.SocialMedia.business.concretes;
 import com.socialmedia.SocialMedia.dataAccess.abstracts.PostRepository;
 import com.socialmedia.SocialMedia.dto.requests.CreatePostRequest;
 import com.socialmedia.SocialMedia.dto.requests.UpdatePostRequest;
+import com.socialmedia.SocialMedia.dto.responses.GetAllLikeResponse;
 import com.socialmedia.SocialMedia.dto.responses.GetAllPostResponse;
 import com.socialmedia.SocialMedia.entitites.concretes.Post;
 import com.socialmedia.SocialMedia.entitites.concretes.User;
@@ -14,20 +15,27 @@ import java.util.stream.Collectors;
 
 @Service
 public class PostService {
-    private PostRepository postRepository;
-    private UserService userService;
+    private final PostRepository postRepository;
+    private final UserService userService;
+    private LikeService likeService;
 
     public PostService(PostRepository postRepository, UserService userService) {
         this.postRepository = postRepository;
         this.userService = userService;
     }
+    public void setLikeService(LikeService likeService) {
+        this.likeService = likeService;
+    }
 
     public List<GetAllPostResponse> getAllPosts(Optional<Long> userId) {
         List<Post> list;
-        if (userId.isPresent())
+        if (userId.isPresent()){
             list = postRepository.findByUser_UserId(userId.get());
-        list = postRepository.findAll();
-        return list.stream().map(post -> new GetAllPostResponse(post)).collect(Collectors.toList());
+        }else
+            list = postRepository.findAll();
+        return list.stream().map(p -> {
+            List<GetAllLikeResponse> likes = likeService.getAllLikesWithParam(Optional.ofNullable(null), Optional.of(p.getPostId()));
+            return new GetAllPostResponse(p, likes);}).collect(Collectors.toList());
     }
 
     public Post getOnePost(Long postId) {
