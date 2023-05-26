@@ -12,14 +12,13 @@ public class GetAllPostResponse {
     private String userName;
     private String title;
     private String text;
-    List<GetAllLikeResponse> postLikes;
 
-    public GetAllPostResponse(Post entity, List<GetAllLikeResponse> likes) {
+    public GetAllPostResponse(Post entity) {
         this.postId = entity.getPostId();
         this.userId = entity.getUser().getUserId();
         this.userName = entity.getUser().getUserName();
         this.title = entity.getTitle();
         this.text = entity.getText();
-        this.postLikes = likes;
+
     }
 }

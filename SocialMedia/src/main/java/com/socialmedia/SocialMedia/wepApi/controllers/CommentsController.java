@@ -13,7 +13,7 @@ import java.util.Optional;
 @RestController
 @RequestMapping("/comments")
 public class CommentsController {
-    private CommentService commentService;
+    private final CommentService commentService;
 
     public CommentsController(CommentService commentService) {
         this.commentService = commentService;

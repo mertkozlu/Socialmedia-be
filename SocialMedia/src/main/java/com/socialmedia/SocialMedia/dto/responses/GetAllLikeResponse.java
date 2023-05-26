@@ -10,7 +10,6 @@ public class GetAllLikeResponse {
     private Long likeId;
     private Long userId;
     private Long postId;
-    List<GetAllLikeResponse> list;
 
     public GetAllLikeResponse(Like entity) {
         this.likeId = entity.getLikeId();

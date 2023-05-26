@@ -17,15 +17,12 @@ import java.util.stream.Collectors;
 public class PostService {
     private final PostRepository postRepository;
     private final UserService userService;
-    private LikeService likeService;
 
     public PostService(PostRepository postRepository, UserService userService) {
         this.postRepository = postRepository;
         this.userService = userService;
     }
-    public void setLikeService(LikeService likeService) {
-        this.likeService = likeService;
-    }
+
 
     public List<GetAllPostResponse> getAllPosts(Optional<Long> userId) {
         List<Post> list;
@@ -33,9 +30,7 @@ public class PostService {
             list = postRepository.findByUser_UserId(userId.get());
         }else
             list = postRepository.findAll();
-        return list.stream().map(p -> {
-            List<GetAllLikeResponse> likes = likeService.getAllLikesWithParam(Optional.ofNullable(null), Optional.of(p.getPostId()));
-            return new GetAllPostResponse(p, likes);}).collect(Collectors.toList());
+        return list.stream().map(post -> new GetAllPostResponse(post)).collect(Collectors.toList());
     }
 
     public Post getOnePost(Long postId) {

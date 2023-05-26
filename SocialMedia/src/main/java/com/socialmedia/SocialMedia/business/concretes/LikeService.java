@@ -2,7 +2,6 @@ package com.socialmedia.SocialMedia.business.concretes;
 
 import com.socialmedia.SocialMedia.dataAccess.abstracts.LikeRepository;
 import com.socialmedia.SocialMedia.dto.requests.CreateLikeRequest;
-import com.socialmedia.SocialMedia.dto.requests.UpdateLikeRequest;
 import com.socialmedia.SocialMedia.dto.responses.GetAllLikeResponse;
 import com.socialmedia.SocialMedia.entitites.concretes.Like;
 import com.socialmedia.SocialMedia.entitites.concretes.Post;
@@ -15,9 +14,10 @@ import java.util.stream.Collectors;
 
 @Service
 public class LikeService {
-    private LikeRepository likeRepository;
-    private PostService postService;
-    private UserService userService;
+    private final LikeRepository likeRepository;
+    private final PostService postService;
+    private final UserService userService;
+
 
     public LikeService(LikeRepository likeRepository, PostService postService, UserService userService) {
         this.likeRepository = likeRepository;
@@ -25,7 +25,7 @@ public class LikeService {
         this.userService = userService;
     }
 
-    public List<GetAllLikeResponse> getAllLikesWithParam(Optional<Long> userId, Optional<Long> postId) {
+    public List<GetAllLikeResponse> getAllLikes(Optional<Long> userId, Optional<Long> postId) {
         List<Like> list;
         if (userId.isPresent() && postId.isPresent()) {
             list = likeRepository.findByUser_UserIdAndPost_PostId(postId.get(), userId.get());
@@ -52,15 +52,6 @@ public class LikeService {
 
     public Like getOneLike(Long likeId) {
         return likeRepository.findById(likeId).orElse(null);
-    }
-
-    public Like updateOneLikeById(Long likeId, UpdateLikeRequest updateLikeRequest) {
-        Optional<Like> like = likeRepository.findById(likeId);
-        if (like.isPresent()) {
-            Like toUpdate = like.get();
-            return likeRepository.save(toUpdate);
-        }
-        return null;
     }
 
     public void deleteOneLikeById(Long likeId) {
