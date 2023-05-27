@@ -39,7 +39,7 @@ public class AuthController {
         Authentication auth = authenticationManager.authenticate(authenticationToken);
         SecurityContextHolder.getContext().setAuthentication(auth);
         String jwtToken = jwtTokenProvider.generateJwtToken(auth);
-        return "Bearer" + jwtToken;
+        return "Bearer " + jwtToken;
     }
 
     @PostMapping("/register")
@@ -51,6 +51,6 @@ public class AuthController {
         user.setUserName(registerRequest.getUserName());
         user.setPassword(passwordEncoder.encode(registerRequest.getPassword()));
         userService.saveOneUser(user);
-        return new ResponseEntity<>("User successfully registered", HttpStatus.ACCEPTED);
+        return new ResponseEntity<>("User successfully registered.", HttpStatus.ACCEPTED);
     }
 }
