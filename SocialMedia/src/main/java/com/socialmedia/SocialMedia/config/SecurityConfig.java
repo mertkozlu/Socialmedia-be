@@ -5,6 +5,7 @@ import com.socialmedia.SocialMedia.security.JwtAuthenticationEntryPoint;
 import com.socialmedia.SocialMedia.security.JwtAuthenticationFilter;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.BeanIds;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
@@ -78,6 +79,10 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .exceptionHandling().authenticationEntryPoint(handler).and()
                 .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS).and()
                 .authorizeRequests()
+                .antMatchers(HttpMethod.GET, "/posts")
+                .permitAll()
+                .antMatchers(HttpMethod.GET, "/comments")
+                .permitAll()
                 .antMatchers("/auth/**")
                 .permitAll()
                 .antMatchers("/**").permitAll()
