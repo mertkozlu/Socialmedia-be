@@ -9,6 +9,7 @@ import com.socialmedia.SocialMedia.entitites.concretes.Post;
 import com.socialmedia.SocialMedia.entitites.concretes.User;
 import org.springframework.stereotype.Service;
 
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -46,6 +47,7 @@ public class PostService {
         toSave.setText(createPostRequest.getText());
         toSave.setTitle(createPostRequest.getTitle());
         toSave.setUser(user);
+        toSave.setCreateDate(new Date());
         return postRepository.save(toSave);
     }
 

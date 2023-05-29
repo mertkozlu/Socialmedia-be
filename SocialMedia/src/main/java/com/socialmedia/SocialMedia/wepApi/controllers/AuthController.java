@@ -2,6 +2,7 @@ package com.socialmedia.SocialMedia.wepApi.controllers;
 
 import com.socialmedia.SocialMedia.business.concretes.UserService;
 import com.socialmedia.SocialMedia.dto.requests.UserRequest;
+import com.socialmedia.SocialMedia.dto.responses.AuthResponse;
 import com.socialmedia.SocialMedia.entitites.concretes.User;
 import com.socialmedia.SocialMedia.security.JwtTokenProvider;
 import org.springframework.http.HttpStatus;
@@ -33,24 +34,31 @@ public class AuthController {
     }
 
     @PostMapping("/login")
-    public String login(@RequestBody UserRequest loginRequest) {
+    public AuthResponse login(@RequestBody UserRequest loginRequest) {
         UsernamePasswordAuthenticationToken authenticationToken =
                 new UsernamePasswordAuthenticationToken(loginRequest.getUserName(), loginRequest.getPassword());
         Authentication auth = authenticationManager.authenticate(authenticationToken);
         SecurityContextHolder.getContext().setAuthentication(auth);
         String jwtToken = jwtTokenProvider.generateJwtToken(auth);
-        return "Bearer " + jwtToken;
+        User user = userService.getOneUserByUserName(loginRequest.getUserName());
+        AuthResponse authResponse = new AuthResponse();
+        authResponse.setMessage("Bearer " + jwtToken);
+        authResponse.setUserId(user.getUserId());
+        return authResponse;
     }
 
     @PostMapping("/register")
-    public ResponseEntity<String> register(@RequestBody UserRequest registerRequest) {
+    public ResponseEntity<AuthResponse> register(@RequestBody UserRequest registerRequest) {
+        AuthResponse authResponse = new AuthResponse();
         if (userService.getOneUserByUserName(registerRequest.getUserName()) !=null) {
-            return new ResponseEntity<>("Username already is user.", HttpStatus.BAD_REQUEST);
+            authResponse.setMessage("Username already is user.");
+            return new ResponseEntity<>(authResponse, HttpStatus.BAD_REQUEST);
         }
         User user = new User();
         user.setUserName(registerRequest.getUserName());
         user.setPassword(passwordEncoder.encode(registerRequest.getPassword()));
         userService.saveOneUser(user);
-        return new ResponseEntity<>("User successfully registered.", HttpStatus.ACCEPTED);
+        authResponse.setMessage("User successfully registered.");
+        return new ResponseEntity<>(authResponse, HttpStatus.ACCEPTED);
     }
 }

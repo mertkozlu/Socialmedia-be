@@ -9,6 +9,7 @@ import com.socialmedia.SocialMedia.entitites.concretes.Post;
 import com.socialmedia.SocialMedia.entitites.concretes.User;
 import org.springframework.stereotype.Service;
 
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -48,6 +49,7 @@ public class CommentService {
         toSave.setText(createCommentRequest.getText());
         toSave.setUser(user);
         toSave.setPost(post);
+        toSave.setCreateDate(new Date());
         return commentRepository.save(toSave);
     }
 
