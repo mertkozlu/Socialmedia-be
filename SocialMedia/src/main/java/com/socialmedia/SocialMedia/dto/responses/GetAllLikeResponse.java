@@ -1,9 +1,7 @@
 package com.socialmedia.SocialMedia.dto.responses;
 
-import com.socialmedia.SocialMedia.entitites.concretes.Like;
+import com.socialmedia.SocialMedia.entitites.Like;
 import lombok.Data;
-
-import java.util.List;
 
 @Data
 public class GetAllLikeResponse {

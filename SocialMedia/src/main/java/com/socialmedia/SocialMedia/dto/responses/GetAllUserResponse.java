@@ -1,6 +1,6 @@
 package com.socialmedia.SocialMedia.dto.responses;
 
-import com.socialmedia.SocialMedia.entitites.concretes.User;
+import com.socialmedia.SocialMedia.entitites.User;
 import lombok.Data;
 
 @Data

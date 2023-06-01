@@ -1,10 +1,10 @@
 package com.socialmedia.SocialMedia.wepApi.controllers;
 
-import com.socialmedia.SocialMedia.business.concretes.CommentService;
+import com.socialmedia.SocialMedia.business.CommentService;
 import com.socialmedia.SocialMedia.dto.requests.CreateCommentRequest;
 import com.socialmedia.SocialMedia.dto.requests.UpdateCommentRequest;
 import com.socialmedia.SocialMedia.dto.responses.GetAllCommentResponse;
-import com.socialmedia.SocialMedia.entitites.concretes.Comment;
+import com.socialmedia.SocialMedia.entitites.Comment;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;

@@ -1,11 +1,11 @@
-package com.socialmedia.SocialMedia.business.concretes;
+package com.socialmedia.SocialMedia.business;
 
-import com.socialmedia.SocialMedia.dataAccess.abstracts.LikeRepository;
+import com.socialmedia.SocialMedia.dataAccess.LikeRepository;
 import com.socialmedia.SocialMedia.dto.requests.CreateLikeRequest;
 import com.socialmedia.SocialMedia.dto.responses.GetAllLikeResponse;
-import com.socialmedia.SocialMedia.entitites.concretes.Like;
-import com.socialmedia.SocialMedia.entitites.concretes.Post;
-import com.socialmedia.SocialMedia.entitites.concretes.User;
+import com.socialmedia.SocialMedia.entitites.Like;
+import com.socialmedia.SocialMedia.entitites.Post;
+import com.socialmedia.SocialMedia.entitites.User;
 import org.springframework.stereotype.Service;
 
 import java.util.List;

@@ -1,6 +1,6 @@
-package com.socialmedia.SocialMedia.dataAccess.abstracts;
+package com.socialmedia.SocialMedia.dataAccess;
 
-import com.socialmedia.SocialMedia.entitites.concretes.Comment;
+import com.socialmedia.SocialMedia.entitites.Comment;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;

@@ -1,9 +1,9 @@
 package com.socialmedia.SocialMedia.wepApi.controllers;
 
-import com.socialmedia.SocialMedia.business.concretes.UserService;
+import com.socialmedia.SocialMedia.business.UserService;
 import com.socialmedia.SocialMedia.dto.requests.UserRequest;
 import com.socialmedia.SocialMedia.dto.responses.AuthResponse;
-import com.socialmedia.SocialMedia.entitites.concretes.User;
+import com.socialmedia.SocialMedia.entitites.User;
 import com.socialmedia.SocialMedia.security.JwtTokenProvider;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

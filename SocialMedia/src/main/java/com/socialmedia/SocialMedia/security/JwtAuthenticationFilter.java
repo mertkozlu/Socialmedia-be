@@ -1,6 +1,6 @@
 package com.socialmedia.SocialMedia.security;
 
-import com.socialmedia.SocialMedia.business.concretes.UserDetailsServiceImpl;
+import com.socialmedia.SocialMedia.business.UserDetailsServiceImpl;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -43,7 +43,7 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
 
     private String extractJwtFromRequest(HttpServletRequest request) {
         String bearer = request.getHeader("Authorization");
-        if (StringUtils.hasText(bearer) && bearer.startsWith("Bearer")) {
+        if (StringUtils.hasText(bearer) && bearer.startsWith("Bearer ")) {
             return bearer.substring("Bearer".length() + 1);
         }
         return null;

@@ -1,5 +1,6 @@
-package com.socialmedia.SocialMedia.entitites.concretes;
+package com.socialmedia.SocialMedia.entitites;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -8,28 +9,31 @@ import org.hibernate.annotations.OnDeleteAction;
 
 import javax.persistence.*;
 import java.util.Date;
-import java.util.List;
 
-
+@Table(name = "comments")
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-@Table(name = "posts")
-public class Post {
+public class Comment {
     @Id
-    private Long postId;
-    private String title;
-    @ManyToOne(fetch = FetchType.EAGER)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long commentId;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "post_id", nullable = false)
+    @OnDelete(action = OnDeleteAction.CASCADE)
+    @JsonIgnore
+    private Post post;
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "user_id", nullable = false)
     @OnDelete(action = OnDeleteAction.CASCADE)
+    @JsonIgnore
     private User user;
-
     @Lob
     @Column(columnDefinition = "text")
     private String text;
 
     @Temporal(TemporalType.TIMESTAMP)
     Date createDate;
-
 }

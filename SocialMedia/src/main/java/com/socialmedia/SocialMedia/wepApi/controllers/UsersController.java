@@ -1,7 +1,7 @@
 package com.socialmedia.SocialMedia.wepApi.controllers;
 
-import com.socialmedia.SocialMedia.business.concretes.UserService;
-import com.socialmedia.SocialMedia.entitites.concretes.User;
+import com.socialmedia.SocialMedia.business.UserService;
+import com.socialmedia.SocialMedia.entitites.User;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;

@@ -1,12 +1,12 @@
-package com.socialmedia.SocialMedia.business.concretes;
+package com.socialmedia.SocialMedia.business;
 
-import com.socialmedia.SocialMedia.dataAccess.abstracts.CommentRepository;
+import com.socialmedia.SocialMedia.dataAccess.CommentRepository;
 import com.socialmedia.SocialMedia.dto.requests.CreateCommentRequest;
 import com.socialmedia.SocialMedia.dto.requests.UpdateCommentRequest;
 import com.socialmedia.SocialMedia.dto.responses.GetAllCommentResponse;
-import com.socialmedia.SocialMedia.entitites.concretes.Comment;
-import com.socialmedia.SocialMedia.entitites.concretes.Post;
-import com.socialmedia.SocialMedia.entitites.concretes.User;
+import com.socialmedia.SocialMedia.entitites.Comment;
+import com.socialmedia.SocialMedia.entitites.Post;
+import com.socialmedia.SocialMedia.entitites.User;
 import org.springframework.stereotype.Service;
 
 import java.util.Date;

@@ -1,9 +1,7 @@
 package com.socialmedia.SocialMedia.dto.responses;
 
-import com.socialmedia.SocialMedia.entitites.concretes.Post;
+import com.socialmedia.SocialMedia.entitites.Post;
 import lombok.Data;
-
-import java.util.List;
 
 @Data
 public class GetAllPostResponse {

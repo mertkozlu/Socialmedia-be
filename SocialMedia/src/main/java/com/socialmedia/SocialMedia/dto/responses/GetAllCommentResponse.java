@@ -1,6 +1,6 @@
 package com.socialmedia.SocialMedia.dto.responses;
 
-import com.socialmedia.SocialMedia.entitites.concretes.Comment;
+import com.socialmedia.SocialMedia.entitites.Comment;
 import lombok.Data;
 
 @Data

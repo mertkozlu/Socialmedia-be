@@ -1,4 +1,4 @@
-package com.socialmedia.SocialMedia.entitites.concretes;
+package com.socialmedia.SocialMedia.entitites;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

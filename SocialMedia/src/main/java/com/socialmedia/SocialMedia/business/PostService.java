@@ -1,12 +1,11 @@
-package com.socialmedia.SocialMedia.business.concretes;
+package com.socialmedia.SocialMedia.business;
 
-import com.socialmedia.SocialMedia.dataAccess.abstracts.PostRepository;
+import com.socialmedia.SocialMedia.dataAccess.PostRepository;
 import com.socialmedia.SocialMedia.dto.requests.CreatePostRequest;
 import com.socialmedia.SocialMedia.dto.requests.UpdatePostRequest;
-import com.socialmedia.SocialMedia.dto.responses.GetAllLikeResponse;
 import com.socialmedia.SocialMedia.dto.responses.GetAllPostResponse;
-import com.socialmedia.SocialMedia.entitites.concretes.Post;
-import com.socialmedia.SocialMedia.entitites.concretes.User;
+import com.socialmedia.SocialMedia.entitites.Post;
+import com.socialmedia.SocialMedia.entitites.User;
 import org.springframework.stereotype.Service;
 
 import java.util.Date;

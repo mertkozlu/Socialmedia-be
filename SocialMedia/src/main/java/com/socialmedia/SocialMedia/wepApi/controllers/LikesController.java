@@ -1,9 +1,9 @@
 package com.socialmedia.SocialMedia.wepApi.controllers;
 
-import com.socialmedia.SocialMedia.business.concretes.LikeService;
+import com.socialmedia.SocialMedia.business.LikeService;
 import com.socialmedia.SocialMedia.dto.requests.CreateLikeRequest;
 import com.socialmedia.SocialMedia.dto.responses.GetAllLikeResponse;
-import com.socialmedia.SocialMedia.entitites.concretes.Like;
+import com.socialmedia.SocialMedia.entitites.Like;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;

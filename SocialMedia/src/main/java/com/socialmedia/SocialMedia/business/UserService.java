@@ -1,12 +1,12 @@
-package com.socialmedia.SocialMedia.business.concretes;
+package com.socialmedia.SocialMedia.business;
 
-import com.socialmedia.SocialMedia.dataAccess.abstracts.CommentRepository;
-import com.socialmedia.SocialMedia.dataAccess.abstracts.LikeRepository;
-import com.socialmedia.SocialMedia.dataAccess.abstracts.PostRepository;
-import com.socialmedia.SocialMedia.dataAccess.abstracts.UserRepository;
-import com.socialmedia.SocialMedia.entitites.concretes.Comment;
-import com.socialmedia.SocialMedia.entitites.concretes.Like;
-import com.socialmedia.SocialMedia.entitites.concretes.User;
+import com.socialmedia.SocialMedia.dataAccess.CommentRepository;
+import com.socialmedia.SocialMedia.dataAccess.LikeRepository;
+import com.socialmedia.SocialMedia.dataAccess.PostRepository;
+import com.socialmedia.SocialMedia.dataAccess.UserRepository;
+import com.socialmedia.SocialMedia.entitites.Comment;
+import com.socialmedia.SocialMedia.entitites.Like;
+import com.socialmedia.SocialMedia.entitites.User;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;

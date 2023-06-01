@@ -1,6 +1,6 @@
 package com.socialmedia.SocialMedia.security;
 
-import com.socialmedia.SocialMedia.entitites.concretes.User;
+import com.socialmedia.SocialMedia.entitites.User;
 import lombok.Getter;
 import lombok.Setter;
 import org.springframework.security.core.GrantedAuthority;
@@ -19,7 +19,7 @@ public class JwtUserDetails implements UserDetails {
     private String password;
     private Collection<? extends GrantedAuthority> authorities;
 
-    public JwtUserDetails(Long userId, String userName, String password, Collection<? extends GrantedAuthority> authorities) {
+    private JwtUserDetails(Long userId, String userName, String password, Collection<? extends GrantedAuthority> authorities) {
         this.userId = userId;
         this.userName = userName;
         this.password = password;

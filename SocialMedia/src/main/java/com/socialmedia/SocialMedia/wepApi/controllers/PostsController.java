@@ -1,10 +1,10 @@
 package com.socialmedia.SocialMedia.wepApi.controllers;
 
-import com.socialmedia.SocialMedia.business.concretes.PostService;
+import com.socialmedia.SocialMedia.business.PostService;
 import com.socialmedia.SocialMedia.dto.requests.CreatePostRequest;
 import com.socialmedia.SocialMedia.dto.requests.UpdatePostRequest;
 import com.socialmedia.SocialMedia.dto.responses.GetAllPostResponse;
-import com.socialmedia.SocialMedia.entitites.concretes.Post;
+import com.socialmedia.SocialMedia.entitites.Post;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;

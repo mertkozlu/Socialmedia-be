@@ -1,7 +1,7 @@
-package com.socialmedia.SocialMedia.business.concretes;
+package com.socialmedia.SocialMedia.business;
 
-import com.socialmedia.SocialMedia.dataAccess.abstracts.UserRepository;
-import com.socialmedia.SocialMedia.entitites.concretes.User;
+import com.socialmedia.SocialMedia.dataAccess.UserRepository;
+import com.socialmedia.SocialMedia.entitites.User;
 import com.socialmedia.SocialMedia.security.JwtUserDetails;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;

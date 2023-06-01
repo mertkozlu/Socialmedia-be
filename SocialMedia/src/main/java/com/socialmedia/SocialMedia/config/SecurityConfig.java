@@ -1,6 +1,6 @@
 package com.socialmedia.SocialMedia.config;
 
-import com.socialmedia.SocialMedia.business.concretes.UserDetailsServiceImpl;
+import com.socialmedia.SocialMedia.business.UserDetailsServiceImpl;
 import com.socialmedia.SocialMedia.security.JwtAuthenticationEntryPoint;
 import com.socialmedia.SocialMedia.security.JwtAuthenticationFilter;
 import org.springframework.context.annotation.Bean;
