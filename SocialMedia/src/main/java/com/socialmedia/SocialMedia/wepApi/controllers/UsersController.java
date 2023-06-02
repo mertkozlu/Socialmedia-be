@@ -1,6 +1,7 @@
 package com.socialmedia.SocialMedia.wepApi.controllers;
 
 import com.socialmedia.SocialMedia.business.UserService;
+import com.socialmedia.SocialMedia.dto.responses.UserResponse;
 import com.socialmedia.SocialMedia.entitites.User;
 import org.springframework.web.bind.annotation.*;
 
@@ -26,8 +27,8 @@ public class UsersController {
     }
 
     @GetMapping("/{userId}")
-    public User getOneUser(@PathVariable Long userId) {
-        return userService.getOneUser(userId);
+    public UserResponse getOneUser(@PathVariable Long userId) {
+        return new UserResponse(userService.getOneUser(userId));
     }
 
     @PutMapping("/{userId}")

@@ -11,5 +11,5 @@ public interface PostRepository extends JpaRepository<Post, Long> {
     List<Post> findByUser_UserId(Long userId);
     @Query(value = "select id from post where user_id = :userId order by create_date desc limit 5",
             nativeQuery = true)
-    List<Long> findByTopByUser_UserId(@Param("userId") Long userId);
+    List<Long> findByTopByUserId(@Param("userId") Long userId);
 }

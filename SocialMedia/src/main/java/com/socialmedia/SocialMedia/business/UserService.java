@@ -4,8 +4,6 @@ import com.socialmedia.SocialMedia.dataAccess.CommentRepository;
 import com.socialmedia.SocialMedia.dataAccess.LikeRepository;
 import com.socialmedia.SocialMedia.dataAccess.PostRepository;
 import com.socialmedia.SocialMedia.dataAccess.UserRepository;
-import com.socialmedia.SocialMedia.entitites.Comment;
-import com.socialmedia.SocialMedia.entitites.Like;
 import com.socialmedia.SocialMedia.entitites.User;
 import org.springframework.stereotype.Service;
 
@@ -47,6 +45,7 @@ public class UserService {
             User foundUser = user.get();
             foundUser.setUserName(newUser.getUserName());
             foundUser.setPassword(newUser.getPassword());
+            foundUser.setAvatar(newUser.getAvatar());
             return foundUser;
         } else
             return null;
@@ -62,7 +61,7 @@ public class UserService {
     }
 
     public List<Object> getUserActivity(Long userId) {
-        List<Long> postIds = postRepository.findByTopByUser_UserId(userId);
+        List<Long> postIds = postRepository.findByTopByUserId(userId);
         if (postIds.isEmpty())
             return null;
         List<Object> comments = commentRepository.findUserCommentByPostId(postIds);
