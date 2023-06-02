@@ -62,11 +62,11 @@ public class UserService {
     }
 
     public List<Object> getUserActivity(Long userId) {
-        List<Long> postIds = postRepository.findByTopByUserId(userId);
+        List<Long> postIds = postRepository.findByTopByUser_UserId(userId);
         if (postIds.isEmpty())
             return null;
-        List<Comment> comments = commentRepository.findUserCommentByPostId(postIds);
-        List<Like> likes = likeRepository.findUserLikeByPostId(postIds);
+        List<Object> comments = commentRepository.findUserCommentByPostId(postIds);
+        List<Object> likes = likeRepository.findUserLikeByPostId(postIds);
         List<Object> result = new ArrayList<>();
         result.addAll(comments);
         result.addAll(likes);
