@@ -1,8 +1,8 @@
 package com.socialmedia.SocialMedia.security;
 
 import io.jsonwebtoken.*;
-import org.springframework.security.core.Authentication;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Component;
 
 import java.util.Date;
@@ -23,6 +23,13 @@ public class JwtTokenProvider {
                 .signWith(SignatureAlgorithm.HS512, APP_SECRET).compact();
     }
 
+    public String generateJwtTokenByUserName(Long userId) {
+        Date expireDate = new Date(new Date().getTime() + EXPIRES_IN);
+        return Jwts.builder().setSubject(Long.toString(userId))
+                .setIssuedAt(new Date()).setExpiration(expireDate)
+                .signWith(SignatureAlgorithm.HS512, APP_SECRET).compact();
+    }
+
     Long getUserIdFromJwt(String token) {
         Claims claims = Jwts.parser().setSigningKey(APP_SECRET).parseClaimsJws(token).getBody();
         return Long.parseLong(claims.getSubject());
@@ -32,15 +39,15 @@ public class JwtTokenProvider {
         try {
             Jwts.parser().setSigningKey(APP_SECRET).parseClaimsJws(token);
             return !isTokenExpired(token);
-        }catch (SignatureException e) {
+        } catch (SignatureException e) {
             return false;
-        }catch (MalformedJwtException e) {
+        } catch (MalformedJwtException e) {
             return false;
-        }catch (ExpiredJwtException e) {
+        } catch (ExpiredJwtException e) {
             return false;
-        }catch (UnsupportedJwtException e) {
+        } catch (UnsupportedJwtException e) {
             return false;
-        }catch (IllegalArgumentException e) {
+        } catch (IllegalArgumentException e) {
             return false;
         }
     }

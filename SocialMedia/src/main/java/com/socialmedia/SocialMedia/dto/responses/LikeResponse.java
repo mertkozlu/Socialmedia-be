@@ -4,12 +4,12 @@ import com.socialmedia.SocialMedia.entitites.Like;
 import lombok.Data;
 
 @Data
-public class GetAllLikeResponse {
+public class LikeResponse {
     private Long likeId;
     private Long userId;
     private Long postId;
 
-    public GetAllLikeResponse(Like entity) {
+    public LikeResponse(Like entity) {
         this.likeId = entity.getLikeId();
         this.userId = entity.getUser().getUserId();
         this.postId = entity.getUser().getUserId();

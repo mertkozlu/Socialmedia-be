@@ -3,7 +3,7 @@ package com.socialmedia.SocialMedia.business;
 import com.socialmedia.SocialMedia.dataAccess.CommentRepository;
 import com.socialmedia.SocialMedia.dto.requests.CreateCommentRequest;
 import com.socialmedia.SocialMedia.dto.requests.UpdateCommentRequest;
-import com.socialmedia.SocialMedia.dto.responses.GetAllCommentResponse;
+import com.socialmedia.SocialMedia.dto.responses.CommentResponse;
 import com.socialmedia.SocialMedia.entitites.Comment;
 import com.socialmedia.SocialMedia.entitites.Post;
 import com.socialmedia.SocialMedia.entitites.User;
@@ -26,7 +26,7 @@ public class CommentService {
         this.userService = userService;
     }
 
-    public List<GetAllCommentResponse> getAllComments(Optional<Long> postId, Optional<Long> userId) {
+    public List<CommentResponse> getAllComments(Optional<Long> postId, Optional<Long> userId) {
         List<Comment> list;
         if (userId.isPresent() && postId.isPresent()) {
             list = commentRepository.findByUser_UserIdAndPost_PostId(userId.get(), postId.get());
@@ -36,7 +36,7 @@ public class CommentService {
             list = commentRepository.findByPost_PostId(postId.get());
         } else
             list = commentRepository.findAll();
-        return list.stream().map(comment -> new GetAllCommentResponse(comment)).collect(Collectors.toList());
+        return list.stream().map(comment -> new CommentResponse(comment)).collect(Collectors.toList());
     }
 
     public Comment createOnePost(CreateCommentRequest createCommentRequest) {

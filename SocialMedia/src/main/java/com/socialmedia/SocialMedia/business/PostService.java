@@ -3,7 +3,7 @@ package com.socialmedia.SocialMedia.business;
 import com.socialmedia.SocialMedia.dataAccess.PostRepository;
 import com.socialmedia.SocialMedia.dto.requests.CreatePostRequest;
 import com.socialmedia.SocialMedia.dto.requests.UpdatePostRequest;
-import com.socialmedia.SocialMedia.dto.responses.GetAllPostResponse;
+import com.socialmedia.SocialMedia.dto.responses.PostResponse;
 import com.socialmedia.SocialMedia.entitites.Post;
 import com.socialmedia.SocialMedia.entitites.User;
 import org.springframework.stereotype.Service;
@@ -24,13 +24,13 @@ public class PostService {
     }
 
 
-    public List<GetAllPostResponse> getAllPosts(Optional<Long> userId) {
+    public List<PostResponse> getAllPosts(Optional<Long> userId) {
         List<Post> list;
-        if (userId.isPresent()){
+        if (userId.isPresent()) {
             list = postRepository.findByUser_UserId(userId.get());
-        }else
+        } else
             list = postRepository.findAll();
-        return list.stream().map(post -> new GetAllPostResponse(post)).collect(Collectors.toList());
+        return list.stream().map(post -> new PostResponse(post)).collect(Collectors.toList());
     }
 
     public Post getOnePost(Long postId) {

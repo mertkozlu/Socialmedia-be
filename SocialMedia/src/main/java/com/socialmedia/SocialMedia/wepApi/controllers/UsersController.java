@@ -3,6 +3,8 @@ package com.socialmedia.SocialMedia.wepApi.controllers;
 import com.socialmedia.SocialMedia.business.UserService;
 import com.socialmedia.SocialMedia.dto.responses.UserResponse;
 import com.socialmedia.SocialMedia.entitites.User;
+import com.socialmedia.SocialMedia.exceptions.UserNotFoundException;
+import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -28,7 +30,11 @@ public class UsersController {
 
     @GetMapping("/{userId}")
     public UserResponse getOneUser(@PathVariable Long userId) {
-        return new UserResponse(userService.getOneUser(userId));
+        User user = userService.getOneUser(userId);
+        if (user == null) {
+            throw new UserNotFoundException();
+        }
+        return new UserResponse(user);
     }
 
     @PutMapping("/{userId}")
@@ -45,6 +51,15 @@ public class UsersController {
     public List<Object> getUserActivity(@PathVariable Long userId) {
         return userService.getUserActivity(userId);
     }
+
+    @ExceptionHandler(UserNotFoundException.class)
+    @ResponseStatus(HttpStatus.NOT_FOUND)
+    @ResponseBody
+    private void handleUserNotFound() {
+
+    }
+
+
 
 
 }

@@ -4,14 +4,14 @@ import com.socialmedia.SocialMedia.entitites.Post;
 import lombok.Data;
 
 @Data
-public class GetAllPostResponse {
+public class PostResponse {
     private Long postId;
     private Long userId;
     private String userName;
     private String title;
     private String text;
 
-    public GetAllPostResponse(Post entity) {
+    public PostResponse(Post entity) {
         this.postId = entity.getPostId();
         this.userId = entity.getUser().getUserId();
         this.userName = entity.getUser().getUserName();

@@ -2,7 +2,7 @@ package com.socialmedia.SocialMedia.business;
 
 import com.socialmedia.SocialMedia.dataAccess.LikeRepository;
 import com.socialmedia.SocialMedia.dto.requests.CreateLikeRequest;
-import com.socialmedia.SocialMedia.dto.responses.GetAllLikeResponse;
+import com.socialmedia.SocialMedia.dto.responses.LikeResponse;
 import com.socialmedia.SocialMedia.entitites.Like;
 import com.socialmedia.SocialMedia.entitites.Post;
 import com.socialmedia.SocialMedia.entitites.User;
@@ -25,7 +25,7 @@ public class LikeService {
         this.userService = userService;
     }
 
-    public List<GetAllLikeResponse> getAllLikes(Optional<Long> userId, Optional<Long> postId) {
+    public List<LikeResponse> getAllLikes(Optional<Long> userId, Optional<Long> postId) {
         List<Like> list;
         if (userId.isPresent() && postId.isPresent()) {
             list = likeRepository.findByUser_UserIdAndPost_PostId(postId.get(), userId.get());
@@ -35,7 +35,7 @@ public class LikeService {
             list = likeRepository.findByPost_PostId(postId.get());
         } else
             list = likeRepository.findAll();
-        return list.stream().map(like -> new GetAllLikeResponse(like)).collect(Collectors.toList());
+        return list.stream().map(like -> new LikeResponse(like)).collect(Collectors.toList());
     }
 
     public Like createOneLike(CreateLikeRequest createLikeRequest) {
