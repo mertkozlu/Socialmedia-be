@@ -6,6 +6,7 @@ import com.socialmedia.SocialMedia.dataAccess.PostRepository;
 import com.socialmedia.SocialMedia.dataAccess.UserRepository;
 import com.socialmedia.SocialMedia.dto.requests.CreateUserRequest;
 import com.socialmedia.SocialMedia.dto.requests.UpdateUserRequest;
+import com.socialmedia.SocialMedia.dto.responses.UserResponse;
 import com.socialmedia.SocialMedia.entitites.User;
 import org.springframework.stereotype.Service;
 
@@ -28,9 +29,20 @@ public class UserService {
         this.postRepository = postRepository;
     }
 
-    public List<User> getAllUsers() {
-        return userRepository.findAll();
+    public List<UserResponse> getAllUsers() {
+        List<User> users=userRepository.findAll();
+        List<UserResponse> userResponses=new ArrayList<UserResponse>();
+
+        for (User user:users){
+            UserResponse foundUser=new UserResponse(user);
+            foundUser.setUserName(user.getUserName());
+            foundUser.setUserId(user.getUserId());
+            userResponses.add(foundUser);
+        }
+
+        return userResponses;
     }
+
 
     public User saveOneUser(CreateUserRequest newUser) {
         User user = new User();
@@ -50,6 +62,7 @@ public class UserService {
             User foundUser = user.get();
             foundUser.setUserName(newUser.getUserName());
             foundUser.setPassword(newUser.getPassword());
+            userRepository.save(foundUser);
             return foundUser;
         } else
             return null;

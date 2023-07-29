@@ -22,7 +22,7 @@ public class UsersController {
     }
 
     @GetMapping("/getAll")
-    public List<User> getAllUsers() {
+    public List<UserResponse> getAllUsers() {
         return userService.getAllUsers();
     }
 
@@ -40,12 +40,12 @@ public class UsersController {
         return new UserResponse(user);
     }
 
-    @PutMapping("/update")
+    @PutMapping("/update/{userId}")
     public User updateOneUser(@PathVariable Long userId, @RequestBody UpdateUserRequest newUser) {
         return userService.updateOneUser(userId, newUser);
     }
 
-    @DeleteMapping("/delete")
+    @DeleteMapping("/delete/{userId}")
     public void deleteOneUser(@PathVariable Long userId) {
         this.userService.deleteOneUser(userId);
     }
