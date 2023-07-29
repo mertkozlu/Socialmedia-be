@@ -18,13 +18,13 @@ public class LikesController {
         this.likeService = likeService;
     }
 
-    @GetMapping
+    @GetMapping("/getAll")
     public List<LikeResponse> getAllLikes(@RequestParam Optional<Long> userId,
                                           @RequestParam Optional<Long> postId) {
         return likeService.getAllLikes(postId, userId);
     }
 
-    @PostMapping("/add/{likeId}")
+    @PostMapping("/add")
     public Like createOneLike(@RequestBody CreateLikeRequest createLikeRequest) {
         return likeService.createOneLike(createLikeRequest);
     }

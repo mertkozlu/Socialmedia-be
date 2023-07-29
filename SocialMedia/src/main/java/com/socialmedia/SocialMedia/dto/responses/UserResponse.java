@@ -7,11 +7,10 @@ import lombok.Data;
 public class UserResponse {
     private Long userId;
     private String userName;
-    private int avatarId;
 
     public UserResponse(User entity) {
         this.userName = entity.getUserName();
         this.userId = entity.getUserId();
-        this.avatarId = entity.getAvatar();
+
     }
 }

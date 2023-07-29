@@ -4,6 +4,8 @@ import com.socialmedia.SocialMedia.dataAccess.CommentRepository;
 import com.socialmedia.SocialMedia.dataAccess.LikeRepository;
 import com.socialmedia.SocialMedia.dataAccess.PostRepository;
 import com.socialmedia.SocialMedia.dataAccess.UserRepository;
+import com.socialmedia.SocialMedia.dto.requests.CreateUserRequest;
+import com.socialmedia.SocialMedia.dto.requests.UpdateUserRequest;
 import com.socialmedia.SocialMedia.entitites.User;
 import org.springframework.stereotype.Service;
 
@@ -30,8 +32,11 @@ public class UserService {
         return userRepository.findAll();
     }
 
-    public User saveOneUser(User newUser) {
-        return this.userRepository.save(newUser);
+    public User saveOneUser(CreateUserRequest newUser) {
+        User user = new User();
+        user.setUserName(newUser.getUserName());
+        user.setPassword(newUser.getPassword());
+        return userRepository.save(user);
     }
 
     public User getOneUser(Long userId) {
@@ -39,13 +44,12 @@ public class UserService {
     }
 
 
-    public User updateOneUser(Long userId, User newUser) {
+    public User updateOneUser(Long userId, UpdateUserRequest newUser) {
         Optional<User> user = userRepository.findById(userId);
         if (user.isPresent()) {
             User foundUser = user.get();
             foundUser.setUserName(newUser.getUserName());
             foundUser.setPassword(newUser.getPassword());
-            foundUser.setAvatar(newUser.getAvatar());
             return foundUser;
         } else
             return null;

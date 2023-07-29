@@ -1,6 +1,8 @@
 package com.socialmedia.SocialMedia.wepApi.controllers;
 
 import com.socialmedia.SocialMedia.business.UserService;
+import com.socialmedia.SocialMedia.dto.requests.CreateUserRequest;
+import com.socialmedia.SocialMedia.dto.requests.UpdateUserRequest;
 import com.socialmedia.SocialMedia.dto.responses.UserResponse;
 import com.socialmedia.SocialMedia.entitites.User;
 import com.socialmedia.SocialMedia.exceptions.UserNotFoundException;
@@ -10,7 +12,8 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/users")
+@CrossOrigin(origins = "http://localhost:4200")
+@RequestMapping("/users")
 public class UsersController {
     private final UserService userService;
 
@@ -18,13 +21,13 @@ public class UsersController {
         this.userService = userService;
     }
 
-    @GetMapping
+    @GetMapping("/getAll")
     public List<User> getAllUsers() {
         return userService.getAllUsers();
     }
 
-    @PostMapping
-    public User createUser(@RequestBody User newUser) {
+    @PostMapping("/add")
+    public User createUser(@RequestBody CreateUserRequest newUser) {
         return userService.saveOneUser(newUser);
     }
 
@@ -37,12 +40,12 @@ public class UsersController {
         return new UserResponse(user);
     }
 
-    @PutMapping("/{userId}")
-    public User updateOneUser(@PathVariable Long userId, @RequestBody User newUser) {
+    @PutMapping("/update")
+    public User updateOneUser(@PathVariable Long userId, @RequestBody UpdateUserRequest newUser) {
         return userService.updateOneUser(userId, newUser);
     }
 
-    @DeleteMapping("/{userId}")
+    @DeleteMapping("/delete")
     public void deleteOneUser(@PathVariable Long userId) {
         this.userService.deleteOneUser(userId);
     }

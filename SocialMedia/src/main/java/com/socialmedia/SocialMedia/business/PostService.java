@@ -42,7 +42,6 @@ public class PostService {
         if (user == null)
             return null;
         Post toSave = new Post();
-        toSave.setPostId(createPostRequest.getPostId());
         toSave.setText(createPostRequest.getText());
         toSave.setTitle(createPostRequest.getTitle());
         toSave.setUser(user);

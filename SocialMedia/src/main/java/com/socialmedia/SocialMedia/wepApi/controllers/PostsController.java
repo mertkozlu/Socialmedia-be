@@ -19,12 +19,12 @@ public class PostsController {
         this.postService = postService;
     }
 
-    @GetMapping
+    @GetMapping("/getAll")
     public List<PostResponse> getAllPosts(@RequestParam Optional<Long> userId) {
         return postService.getAllPosts(userId);
     }
 
-    @PostMapping
+    @PostMapping("/add")
     public Post createOnePost(@RequestBody CreatePostRequest createPostRequest) {
         return postService.createOnePost(createPostRequest);
     }
@@ -34,12 +34,12 @@ public class PostsController {
         return postService.getOnePost(postId);
     }
 
-    @PutMapping("/{postId}")
+    @PutMapping("/update")
     public Post updateOnePost(@PathVariable Long postId, @RequestBody UpdatePostRequest updatePostRequest) {
         return postService.updateOnePostById(postId, updatePostRequest);
     }
 
-    @DeleteMapping
+    @DeleteMapping("/delete/{postId}")
     public void deleteOnePost(@PathVariable Long postId) {
         this.postService.deleteOnePostById(postId);
     }

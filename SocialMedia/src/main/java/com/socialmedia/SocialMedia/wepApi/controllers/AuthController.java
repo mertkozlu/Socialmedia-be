@@ -3,7 +3,7 @@ package com.socialmedia.SocialMedia.wepApi.controllers;
 import com.socialmedia.SocialMedia.business.RefreshTokenService;
 import com.socialmedia.SocialMedia.business.UserService;
 import com.socialmedia.SocialMedia.dto.requests.RefreshRequest;
-import com.socialmedia.SocialMedia.dto.requests.UserRequest;
+import com.socialmedia.SocialMedia.dto.requests.CreateUserRequest;
 import com.socialmedia.SocialMedia.dto.responses.AuthResponse;
 import com.socialmedia.SocialMedia.entitites.RefreshToken;
 import com.socialmedia.SocialMedia.entitites.User;
@@ -39,7 +39,7 @@ public class AuthController {
     }
 
     @PostMapping("/login")
-    public AuthResponse login(@RequestBody UserRequest loginRequest) {
+    public AuthResponse login(@RequestBody CreateUserRequest loginRequest) {
         UsernamePasswordAuthenticationToken authenticationToken =
                 new UsernamePasswordAuthenticationToken(loginRequest.getUserName(), loginRequest.getPassword());
         Authentication auth = authenticationManager.authenticate(authenticationToken);
@@ -55,7 +55,7 @@ public class AuthController {
     }
 
     @PostMapping("/register")
-    public ResponseEntity<AuthResponse> register(@RequestBody UserRequest registerRequest) {
+    public ResponseEntity<AuthResponse> register(@RequestBody CreateUserRequest registerRequest) {
         AuthResponse authResponse = new AuthResponse();
         if (userService.getOneUserByUserName(registerRequest.getUserName()) != null) {
             authResponse.setMessage("Username already in use.");
@@ -64,7 +64,7 @@ public class AuthController {
         User user = new User();
         user.setUserName(registerRequest.getUserName());
         user.setPassword(passwordEncoder.encode(registerRequest.getPassword()));
-        userService.saveOneUser(user);
+        userService.saveOneUser(new CreateUserRequest());
 
         UsernamePasswordAuthenticationToken authToken =
                 new UsernamePasswordAuthenticationToken(registerRequest.getUserName(), registerRequest.getPassword());
