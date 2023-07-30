@@ -12,6 +12,6 @@ public class LikeResponse {
     public LikeResponse(Like entity) {
         this.likeId = entity.getLikeId();
         this.userId = entity.getUser().getUserId();
-        this.postId = entity.getUser().getUserId();
+        this.postId = entity.getPost().getPostId();
     }
 }

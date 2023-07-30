@@ -26,8 +26,8 @@ public class CommentsController {
     }
 
     @PostMapping("/add")
-    public Comment createOnePost(@RequestBody CreateCommentRequest createCommentRequest) {
-        return commentService.createOnePost(createCommentRequest);
+    public Comment createOneComment(@RequestBody CreateCommentRequest createCommentRequest) {
+        return commentService.createOneComment(createCommentRequest);
     }
 
     @GetMapping("/getById/{commentId}")

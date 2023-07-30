@@ -11,7 +11,7 @@ import java.util.List;
 import java.util.Optional;
 
 @RestController
-@RequestMapping("/api/posts")
+@RequestMapping("/posts")
 public class PostsController {
     private final PostService postService;
 
@@ -34,7 +34,7 @@ public class PostsController {
         return postService.getOnePost(postId);
     }
 
-    @PutMapping("/update")
+    @PutMapping("/update/{postId}")
     public Post updateOnePost(@PathVariable Long postId, @RequestBody UpdatePostRequest updatePostRequest) {
         return postService.updateOnePostById(postId, updatePostRequest);
     }

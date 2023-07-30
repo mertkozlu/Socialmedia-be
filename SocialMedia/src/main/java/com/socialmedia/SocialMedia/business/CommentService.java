@@ -39,13 +39,12 @@ public class CommentService {
         return list.stream().map(comment -> new CommentResponse(comment)).collect(Collectors.toList());
     }
 
-    public Comment createOnePost(CreateCommentRequest createCommentRequest) {
+    public Comment createOneComment(CreateCommentRequest createCommentRequest) {
         User user = userService.getOneUser(createCommentRequest.getUserId());
         Post post = postService.getOnePost(createCommentRequest.getPostId());
         if (user == null && post == null)
             return null;
         Comment toSave = new Comment();
-        toSave.setCommentId(createCommentRequest.getCommentId());
         toSave.setText(createCommentRequest.getText());
         toSave.setUser(user);
         toSave.setPost(post);

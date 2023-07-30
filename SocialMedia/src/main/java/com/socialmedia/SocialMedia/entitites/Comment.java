@@ -30,8 +30,7 @@ public class Comment {
     @OnDelete(action = OnDeleteAction.CASCADE)
     @JsonIgnore
     private User user;
-    @Lob
-    @Column(columnDefinition = "text")
+
     private String text;
 
     @Temporal(TemporalType.TIMESTAMP)
